@@ -1,0 +1,201 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: #fff;
+}
+
+.container {
+    text-align: center;
+    max-width: 450px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+    letter-spacing: 3px;
+}
+
+.mode-selector {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.mode-btn {
+    padding: 10px 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 25px;
+    background: transparent;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.mode-btn.active {
+    background: #e94560;
+    border-color: #e94560;
+    box-shadow: 0 0 15px rgba(233, 69, 96, 0.4);
+}
+
+.scoreboard {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+}
+
+.score {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.score .label {
+    font-size: 0.8rem;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.score .score-value {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.player-x .score-value {
+    color: #e94560;
+}
+
+.player-o .score-value {
+    color: #0ea5e9;
+}
+
+.draws .score-value {
+    color: #fbbf24;
+}
+
+.status {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 10px;
+}
+
+.current-player {
+    font-weight: bold;
+    color: #e94560;
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+}
+
+.cell {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    user-select: none;
+}
+
+.cell:hover:not(.taken) {
+    background: rgba(255, 255, 255, 0.15);
+    transform: scale(1.05);
+}
+
+.cell.taken {
+    cursor: not-allowed;
+}
+
+.cell.x {
+    color: #e94560;
+    text-shadow: 0 0 20px rgba(233, 69, 96, 0.5);
+    animation: popIn 0.3s ease;
+}
+
+.cell.o {
+    color: #0ea5e9;
+    text-shadow: 0 0 20px rgba(14, 165, 233, 0.5);
+    animation: popIn 0.3s ease;
+}
+
+.cell.winning {
+    animation: pulse 0.5s ease infinite alternate;
+    background: rgba(251, 191, 36, 0.2);
+}
+
+@keyframes popIn {
+    0% { transform: scale(0); opacity: 0; }
+    50% { transform: scale(1.2); }
+    100% { transform: scale(1); opacity: 1; }
+}
+
+@keyframes pulse {
+    from { box-shadow: 0 0 10px rgba(251, 191, 36, 0.3); }
+    to { box-shadow: 0 0 25px rgba(251, 191, 36, 0.6); }
+}
+
+.restart-btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 25px;
+    background: linear-gradient(135deg, #e94560, #c73659);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(233, 69, 96, 0.3);
+}
+
+.restart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(233, 69, 96, 0.4);
+}
+
+.restart-btn:active {
+    transform: translateY(0);
+}
+
+@media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    .cell { font-size: 2.2rem; }
+    .mode-btn { padding: 8px 15px; font-size: 0.8rem; }
+    .score .score-value { font-size: 1.4rem; }
+}
